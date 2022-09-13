@@ -74,7 +74,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.edit')->with('product', $product);
     }
 
     /**
@@ -86,7 +87,15 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->post('name');
+        $product->description = $request->post('description');
+        $result = $product->update();
+        if($result) {
+            return redirect('products');
+        } else {
+            return view('products.edit', ['result'=>'failed']);
+        }
     }
 
     /**
@@ -97,6 +106,11 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Product::find($id)->delete();
+        if($result) {
+            return redirect('products');
+        } else {
+            return view('products', ['result' => 'failed']);
+        }
     }
 }

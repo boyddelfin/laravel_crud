@@ -5,6 +5,7 @@
         <div class="product-item">
             <h3><a href="/products/{{$product->id}}">{{$product->name}}</a></h3>
             <p>{{$product->description}}</p>
+            <a href="/products/{{$product->id}}/edit">Edit</a> | <a href="/products/{{$product->id}}/destroy">Delete</a>
         </div>
     @endforeach
 @else

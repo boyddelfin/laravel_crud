@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 
 Route::resource('products', ProductsController::class);
+Route::get('products/{id}/destroy', [ProductsController::class, 'destroy']);
