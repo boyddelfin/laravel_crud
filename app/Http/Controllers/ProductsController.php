@@ -63,7 +63,11 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-        return view('products.show')->with('product', $product);
+        if($product){
+            return view('products.show', ['product'=>$product]);
+        } else {
+            return response()->view('404');
+        }
     }
 
     /**
@@ -75,7 +79,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('products.edit')->with('product', $product);
+        return view('products.edit', ['product'=>$product]);
     }
 
     /**
